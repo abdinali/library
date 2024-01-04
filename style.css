@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', monospace;
+}
+
+body {
+    position: relative;
+    background-color: #CCC;
+}
+
+header {
+    background-color: #555;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+}
+
+header .btn-container button {
+    background-color: #222;
+    color: #fff;
+    border: 2px solid #fff;
+    width: 7rem;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+header .features {
+    text-align: center;
+}
+
+header #book-count {
+    position: absolute;
+    right: 0;
+}
