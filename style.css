@@ -70,6 +70,10 @@ header .features {
     border-radius: 0.2rem;
 }
 
+#book-form.active {
+    display: block;
+}
+
 #book-form h2 {
     position: relative;
     text-align: center;
@@ -102,7 +106,7 @@ header .features {
     width: 1.1rem;
 }
 
-#book-form button {
+#book-form #submit-btn {
     width: 100%;
     background-color: #222;
     color: #fff;
