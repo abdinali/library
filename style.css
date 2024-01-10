@@ -6,27 +6,28 @@
 }
 
 body {
-    background-color: #CCC;
     min-height: 100vh;
+    background-color: #888;
 }
 
 /* Header */
 header {
-    background-color: #555;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     display: flex;
     flex-direction: column;
     gap: 10px;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
 }
 
 
 header .btn-container button {
-    background-color: #222;
-    color: #fff;
-    border: 2px solid #fff;
+    background-color: #ccc;
+    color: #000;
+    border: none;
     width: 7rem;
     padding: 0.5rem;
     cursor: pointer;
@@ -50,9 +51,15 @@ header .features {
 }
 
 /* Book Form */
+/* .container {
+    display: flex;
+    justify-content: center;
+    border: 1px solid red;
+} */
 
 #book-form {
-    /* display: none;  */
+    /* position: 9999; */
+    display: none; 
     position: absolute;
     background-color: #fff;
     padding: 1rem;
@@ -110,4 +117,44 @@ header .features {
     right: 0;
     cursor: pointer;
     font-size: 1.2rem;
+}
+
+/* Book Library */
+
+/* Layout */
+#books {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 1rem;
+}
+
+#books .book-card {
+    background-color: #ffffff;
+    color: #000;
+    padding: 0.5rem;
+    border-bottom: 5px solid red;
+    border-radius: 5px;
+}
+
+.book-card .card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card-details .card-edit {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-edit button {
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.card-edit button:hover {
+    transform: scale(1.1);
 }
