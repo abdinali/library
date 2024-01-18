@@ -23,7 +23,7 @@ function addBook() {
     // console.log(typeof title, typeof author, typeof pages, typeof readStatus);
 
     // Create New Book
-    if (title && author && pages && readStatus) {
+    if (title && author && pages) {
         book = new Book(title, author, pages, readStatus);
     
         // Push To Library
@@ -36,9 +36,10 @@ function addBook() {
     }
 }
 
-function createCard(bookObj) {
+function createCard(bookObj, index) {
     let bookCard = document.createElement('div');
     bookCard.classList.add('book-card');
+    bookCard.setAttribute('id', `${index}`);
 
     bookCard.innerHTML = `
     <div class="card-details">
@@ -46,13 +47,19 @@ function createCard(bookObj) {
         <h3 id="book-author">by ${bookObj.author}</h3>
         <p id="book-pages">${bookObj.pages} pages</p>
         <div class="card-edit">
-            <label class="card-status">
-            <input type="checkbox"> Mark as read</label>
+            <div class="card-status">
+                <input type="checkbox">
+                <label> Mark as read</label>
+            </div>
             <button class="delete-btn">
                 <i class="fa-solid fa-trash"></i>
             </button>               
         </div>
     </div>`
+    if (bookObj.isRead == true) {
+        bookCard.classList.toggle('read');
+        bookCard.querySelector('input').checked = true;
+    }
     return bookCard;
 }
 
@@ -61,13 +68,41 @@ function updateDisplay() {
     const display = document.getElementById('books');
     display.innerHTML = '';
 
+    let index = 0;
     myLibrary.forEach((book) => {
         // Create New Book Card
-        const bookCard = createCard(book);
+        const bookCard = createCard(book, index);
 
         // Add Book To Display
         display.appendChild(bookCard);
-        // console.log(book.title, book.author, book.pages, book.isRead);
+        index++;
+        console.log(book.title, book.author, book.pages, book.isRead);
+    })
+
+    const checkboxes = document.querySelectorAll('.book-card .card-edit .card-status');
+    let currentCheckbox = null;
+    let card = null;
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('click', (event) => {
+            // let checked = document.querySelectorAll('.book-card .card-edit .card-status input').checked;
+            // console.log(event.target.checked);
+            if (event.target.tagName == 'LABEL' || 'INPUT') {
+                card = event.target.parentElement.parentElement.parentElement.parentElement;
+                
+                // console.log(card);
+                card.classList.toggle('read');
+
+                // update checkbox
+                if (card.classList.contains('read')) {
+                    card.querySelector('input').checked = true;
+                    // update status inside the book objects for display purposes
+                    myLibrary[card.id].isRead = true;
+                } else {
+                    card.querySelector('input').checked = false;
+                    myLibrary[card.id].isRead = false;
+                }
+            }
+        })
     })
 }
 
