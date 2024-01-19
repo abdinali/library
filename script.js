@@ -1,6 +1,7 @@
-const addBookBtn = document.getElementById('addbook-btn');
+const openFormBtn = document.getElementById('addbook-btn');
 const submitBtn = document.getElementById('submit-btn');
 const closeFormBtn = document.getElementById('close-form-btn');
+const removeAllBtn = document.getElementById('removeall-btn');
 
 const library = document.getElementById('books');
 const form = document.getElementById('book-form');
@@ -32,6 +33,13 @@ function addBook() {
         // console.log(myLibrary);
 
         form.classList.toggle('active');
+
+        // remove data from form
+        form.querySelector('#title').value = '';
+        form.querySelector('#author').value = '';
+        form.querySelector('#pages').value = '';
+        form.querySelector('#read-status').checked = false;
+
         updateDisplay();
     }
 }
@@ -106,7 +114,7 @@ function updateDisplay() {
     })
 }
 
-addBookBtn.addEventListener('click', () => {
+openFormBtn.addEventListener('click', () => {
     form.classList.toggle('active');
 })
 
@@ -117,4 +125,12 @@ closeFormBtn.addEventListener('click', () => {
 submitBtn.addEventListener('click', (event) => {
     event.preventDefault();
     addBook();
+})
+
+removeAllBtn.addEventListener('click', () => {
+    while (myLibrary.length >= 1) {
+        myLibrary.pop();
+    }
+    // call update display function
+    updateDisplay();
 })
